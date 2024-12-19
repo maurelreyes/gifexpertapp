@@ -8,3 +8,11 @@ export const getGifs = async(category) => {
         id: gif.id,
     }))
 }
+
+export const loadCategories = () => {
+    const historyCategory = localStorage.getItem("categories");
+    if(historyCategory) {
+        return JSON.parse(historyCategory);
+    }
+    return []
+}
