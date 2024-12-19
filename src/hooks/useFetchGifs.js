@@ -5,11 +5,13 @@ export const useFetchGifs = (category) => {
 
     const [gifs, setGifs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLimitExceeded, setIsLimitExceeded] = useState(true);
 
     useEffect(() => {
         getGifs(category)
             .then(resp => {
-                setGifs(resp);
+                setIsLimitExceeded(resp.status === 429);
+                setGifs(resp.gifs);
                 setIsLoading(false)
             });
     }, [category]);
@@ -17,5 +19,6 @@ export const useFetchGifs = (category) => {
     return {
         gifs,
         isLoading,
+        isLimitExceeded,
     }
 }

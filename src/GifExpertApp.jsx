@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import { Header, GifGrid, SearchCategory } from "./components";
 import {loadCategories} from "./tools.js";
 

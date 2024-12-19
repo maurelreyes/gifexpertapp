@@ -3,7 +3,7 @@ import {GifCard} from "./GifCard.jsx";
 import {useFetchGifs} from "../hooks/useFetchGifs.js";
 
 export const GifGrid = ({category}) => {
-    const { isLoading, gifs } = useFetchGifs(category);
+    const { isLoading, isLimitExceeded, gifs } = useFetchGifs(category);
 
     return (
         <div key={category} className="p-4">
@@ -21,7 +21,9 @@ export const GifGrid = ({category}) => {
                                 }
                             </div>
                         )
-                        : <h2 className="font-bold text-center text-red-600">Category not found</h2>
+                        : isLimitExceeded
+                            ? <h2 className="font-bold text-center text-red-600">Limit excedeed</h2>
+                            : <h2 className="font-bold text-center text-red-600">Category not found</h2>
             }
 
         </div>
